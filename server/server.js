@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome! your server is running :)" })
 })
 // set port, listen for requests
-require("./app/routes/product.route")(app);
+require("./app/routes/task.route")(app);
 const PORT = process.env.PORT || 8080
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`)

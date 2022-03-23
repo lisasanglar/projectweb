@@ -1,11 +1,10 @@
 const console = require('console');
 const db = require('../models')
-const Product = db.products;
+const Task = db.task;
 const Op = db.Sequelize.Op;
 // Create and Save a new product
 exports.create = (req, res) => {
 // Validate request
-  6
   if (!req.body.name) {
     res.status(400).send({
       message: "Content can not be empty!"
@@ -14,14 +13,10 @@ exports.create = (req, res) => {
   }
 // Create a product
   const prod = {
-    name: req.body.name,
-    photo: req.body.photo,
-    price: req.body.price,
-    description: req.body.description,
-    type: req.body.type
+    name: req.body.name
   }
 // Save product in the database
-  Product.create(prod)
+  Task.create(prod)
     .then(data => {
       res.send(data);
     })
@@ -35,7 +30,7 @@ exports.create = (req, res) => {
 // Retrieve all product from the database.
 exports.findAll = (req, res) => {
   console.log('a')
-  Product.findAll()
+  Task.findAll()
     .then(data => {
       res.send(data);
     })
@@ -50,7 +45,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
 // console.log('id')
   const id = req.params.id
-  Product.findByPk(id)
+  Task.findByPk(id)
     .then(data => {res.send(data)
     })
     .catch(err => {
@@ -62,7 +57,7 @@ exports.findOne = (req, res) => {
 // Update a product by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-  Product.update(req.body, {
+  Task.update(req.body, {
     where: { id: id }
   })
     .then(num => {
@@ -86,7 +81,7 @@ found or is empty!`
 // Delete a product with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-  Product.destroy({
+  Task.destroy({
     where: { id: id }
   })
     .then(num => {
@@ -105,22 +100,6 @@ exports.delete = (req, res) => {
       });
     });
 }
-// Delete all products from the database.
+// Delete all task from the database.
 exports.deleteAll = (req, res) => {
-}
-// Find all products type
-exports.findByType = (req, res) => {
-  console.log('b'+req.query.id)
-  const type = req.query.type
-  var condition = type ? { type: { [Op.like]: `%${type}%` } } : null
-  Product.findAll({ where: condition })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving data."
-      })
-    })
 }
