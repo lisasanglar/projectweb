@@ -1,8 +1,8 @@
 const console = require('console');
 const db = require('../models')
-const Task = db.task;
+const User = db.user;
 const Op = db.Sequelize.Op;
-// Create and Save a new task
+// Create and Save a new user
 exports.create = (req, res) => {
 // Validate request
   if (!req.body.name) {
@@ -11,12 +11,12 @@ exports.create = (req, res) => {
     });
     return;
   }
-// Create a task
+// Create a user
   const prod = {
     name: req.body.name
   }
-// Save task in the database
-  Task.create(prod)
+// Save product in the database
+  User.create(prod)
     .then(data => {
       res.send(data);
     })
@@ -27,10 +27,10 @@ exports.create = (req, res) => {
       })
     })
 }
-// Retrieve all task from the database.
+// Retrieve all user from the database.
 exports.findAll = (req, res) => {
   console.log('a')
-  Task.findAll()
+  User.findAll()
     .then(data => {
       res.send(data);
     })
@@ -41,11 +41,11 @@ exports.findAll = (req, res) => {
       })
     })
 }
-// Find a single task with an id
+// Find a single user with an id
 exports.findOne = (req, res) => {
 // console.log('id')
   const id = req.params.id
-  Task.findByPk(id)
+  User.findByPk(id)
     .then(data => {res.send(data)
     })
     .catch(err => {
@@ -54,10 +54,10 @@ exports.findOne = (req, res) => {
       });
     });
 }
-// Update a task by the id in the request
+// Update a user by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-  Task.update(req.body, {
+  User.update(req.body, {
     where: { id: id }
   })
     .then(num => {
@@ -74,32 +74,32 @@ found or is empty!`
     })
     .catch(err => {
       res.status(500).send({
-        message: `Error updating Produt with id=${id}`
+        message: `Error updating User with id=${id}`
       })
     })
 }
-// Delete a task with the specified id in the request
+// Delete a product with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-  Task.destroy({
+  User.destroy({
     where: { id: id }
   })
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Task was deleted successfully!"
+          message: "User was deleted successfully!"
         });
       } else {
         res.send({
-          message: `Cannot delete task with id=${id}. Task not found!`});
+          message: `Cannot delete user with id=${id}. User not found!`});
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: `Could not delete tasks with id=${id}`
+        message: `Could not delete User with id=${id}`
       });
     });
 }
-// Delete all task from the database.
+// Delete all user from the database.
 exports.deleteAll = (req, res) => {
 }
