@@ -11,8 +11,8 @@
     <router-link :to="{ name: 'signup'}" target="_blank">Sign up</router-link>
     <br>
     <br>
-    <h3>Connect to your own account to access rou saved ToDo Lists</h3>
-    <router-link :to="{ name: 'signup'}" target="_blank">Sign up</router-link>
+    <h3>Connect to your own account to access your saved ToDo Lists</h3>
+    <router-link :to="{ name: 'login'}" target="_blank">Login</router-link>
     <br>
     <br>
   </div>
