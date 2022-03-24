@@ -15,7 +15,7 @@ exports.create = (req, res) => {
   const prod = {
     name: req.body.name
   }
-// Save product in the database
+// Save user in the database
   User.create(prod)
     .then(data => {
       res.send(data);
