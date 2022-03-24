@@ -19,6 +19,17 @@ npm run build
 ```
 npm run lint
 ```
-
+### Installing vue
+```
+npm install @cli/vue
+```
+### Sever dependencies
+```
+npm install express sequelize mysql2 body=parser cors --save
+```
+### Boostrap installation
+```
+npm install bootstrap jquery popper.js
+```
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
